@@ -1,6 +1,6 @@
-ROUND 2 PREPARATION PLAN (6 HOURS)
+# ROUND 2 PREPARATION PLAN (6 HOURS)
 
-HOUR 1 — MCU + BOOT + PERIPHERALS
+## HOUR 1 — MCU + BOOT + PERIPHERALS
 Focus: Core microcontroller fundamentals.
 
 1. MCU Architecture Refresh (25 min)
@@ -24,9 +24,7 @@ Prepare short 20-second explanations for:
 - What causes SPI misalignment?
 - Why CAN uses dominant bits.
 
-----------------------------------------
-
-HOUR 2 — FREERTOS + DRIVER DEVELOPMENT
+## HOUR 2 — FREERTOS + DRIVER DEVELOPMENT
 Focus: RTOS concepts and driver patterns.
 
 1. FreeRTOS (20 min)
@@ -54,7 +52,7 @@ Add DMA if needed
 
 ----------------------------------------
 
-HOUR 3 — DEBUGGING MASTERCLASS
+## HOUR 3 — DEBUGGING MASTERCLASS
 Focus: Showing your debugging strength.
 
 1. Debugging Framework (20 min)
@@ -78,9 +76,7 @@ C. FreeRTOS jitter / priority issue
 - Boot failure
 - Noisy ADC readings
 
-----------------------------------------
-
-HOUR 4 — FAE COMMUNICATION + INTRODUCTION
+## HOUR 4 — FAE COMMUNICATION + INTRODUCTION
 Focus: Clear, simple, customer-facing answers.
 
 1. Build Your 60 Second Intro (20 min)
@@ -107,9 +103,8 @@ Working with incomplete information
 Admitting unknowns
 Long debugging cycles
 
-----------------------------------------
 
-HOUR 5 — TOP TECHNICAL QUESTIONS (FAST RECALL)
+## HOUR 5 — TOP TECHNICAL QUESTIONS (FAST RECALL)
 Focus: Crisp senior-level answers.
 
 1. MCU Fundamentals (20 min)
@@ -132,9 +127,7 @@ ISR design
 Priority inversion
 Deadlock examples
 
-----------------------------------------
-
-HOUR 6 — FINAL WRAP-UP
+## HOUR 6 — FINAL WRAP-UP
 Focus: Polishing stories and confidence.
 
 1. Polish Debug Stories (20 min)
@@ -154,8 +147,5 @@ Interrupts
 Debugging framework
 Your intro
 Your 3 stories
-
-========================================
-END OF PLAN
 ========================================
 
