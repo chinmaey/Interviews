@@ -1,6 +1,4 @@
-========================================
 ROUND 2 PREPARATION PLAN (6 HOURS)
-========================================
 
 HOUR 1 — MCU + BOOT + PERIPHERALS
 Focus: Core microcontroller fundamentals.
