@@ -7,7 +7,7 @@ Focus: Core microcontroller fundamentals.
 - Boot sequence: Reset → Vector Table → SystemInit → main
    🟡 reset -> vector table (reset ptr, stack ptr, NMI, **hard fault handler**. 
 - Clock tree and peripheral clock gating
-  '''
+  '''bash
     🟡 - How do I choose a clock?
     Pick HSI for low power, HSE for accuracy, and PLL when you need maximum CPU performance.
     - What clock does a Cortex-M3 use?
