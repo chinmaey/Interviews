@@ -5,6 +5,7 @@ Focus: Core microcontroller fundamentals.
 
 1. MCU Architecture Refresh (25 min)
 - Boot sequence: Reset → Vector Table → SystemInit → main
+  :) 
 - Clock tree and peripheral clock gating
 - Memory map: Flash, SRAM, peripherals
 - IOMUX / GPIO configuration flow
