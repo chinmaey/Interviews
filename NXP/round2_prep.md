@@ -5,9 +5,20 @@ Focus: Core microcontroller fundamentals.
 
 1. MCU Architecture Refresh (25 min)
 - Boot sequence: Reset → Vector Table → SystemInit → main
-  :) 
+   🟡 reset -> vector table (reset ptr, stack ptr, NMI, **hard fault handler**. 
 - Clock tree and peripheral clock gating
+  '''
+    🟡 - How do I choose a clock?
+    Pick HSI for low power, HSE for accuracy, and PLL when you need maximum CPU performance.
+    - What clock does a Cortex-M3 use?
+    Cortex-M3 MCUs typically run the CPU from a PLL-derived system clock (commonly up to 72 MHz).
+    - What happens if I overclock? Safe and max?
+    Overclocking can work briefly but breaks timing margins and risks crashes—only vendor-rated max frequency is safe.
+    - Are all cores synced, and what if overclocked?
+     Most M3 chips are single-core; if multi-core, they share the same clock source but become unstable together when overclocked.
+
 - Memory map: Flash, SRAM, peripherals
+  🟡 - 
 - IOMUX / GPIO configuration flow
 - NVIC and interrupt priority grouping
 
