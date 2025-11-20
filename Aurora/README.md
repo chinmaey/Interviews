@@ -1,151 +1,150 @@
-# Aurora LiDAR Security — 10-Hour Interview Prep Plan (Compressed & Practical)
+# Aurora LiDAR Security — **7-Hour Interview Prep Plan (Markdown)**
 
-This plan fits **ALL must-cover topics** into **10 focused hours** with only the essentials needed for the Aurora interview.
-
----
-
-# ✅ Overview of 10-Hour Schedule
-
-| Hour | Topic |
-|------|-------|
-| 1–2  | TPM 2.0 & Secure Boot / Chain of Trust |
-| 3    | AeroMACS / WiMAX Security & Your Honeywell Experience |
-| 4    | Automotive / Robotics Security Standards (ISO/SAE 21434, UN R155) |
-| 5    | Secure Element (NCJ37x), HSM vs TPM |
-| 6    | TLS/SSL + OAuth (embedded focus) |
-| 7    | Linux Coding & Firmware-Style Programming Refresher |
-| 8    | LiDAR System Threats + Attack/Mitigation Mapping |
-| 9    | Secure LiDAR Architecture Design (final integration) |
-| 10   | Final Rehearsal — Your Stories, 20 Q&A, and Summary |
+Optimized from the original 10-hour plan, compressed to 7 hours with all critical LiDAR-security topics included.
 
 ---
 
-# ✅ Hour 1–2: TPM 2.0 + Secure Boot (Your Most Critical Learning)
+## ✅ **Hour 1 — TPM, Measured Boot & Chain of Trust**
+**Goal:** Be able to explain secure boot + attestation in under 90 seconds.
 
-## **TPM 2.0 — What You MUST Know**
-- Hardware root of trust
-- PCR registers (0–7 static boot, 8–15 OS/runtime)
-- Attestation (`TPM2_Quote`)
-- Key hierarchy: EK → SRK → objects
-- Sealing data to PCR state
-- Rollback protection
-- Random number generation & key storage
+### Topics:
+- TPM 2.0: PCRs, attestation (`Quote`), sealing, EK/SRK
+- Verified boot vs measured boot
+- Firmware signing + anti-rollback
+- How LiDAR verifies firmware & config authenticity
+- Mapping your AeroMACS + TPM identity work
 
-### **Your Experience**
-- Used TPM 2.0 for EAP-TLS private key storage in AeroMACS  
-- Integrated OpenSSL + TPM backend  
-- Device identity from TPM EK/AIK
-
-### **Secure Boot (Compressed Explanation)**
-1. **Boot ROM** verifies bootloader signature  
-2. **Bootloader** verifies kernel/firmware hash + signature  
-3. **Firmware** verifies config/data integrity  
-4. **TPM Quote** for attestation  
-5. **Application** establishes mTLS channel using TPM keys  
-
-**One sentence for interviewer:**  
-“TPM measured boot captures each stage in PCRs, verified boot enforces signatures, and attestation ensures firmware integrity before LiDAR begins operation.”
+### Output:
+- 5 crisp sentences describing the secure boot chain
 
 ---
 
-# ✅ Hour 3: AeroMACS / WiMAX Security — Your Strongest Differentiator
+## ✅ **Hour 2 — Hardware Security: Secure Element / HSM / TPM**
+**Goal:** Show command of embedded crypto hardware (your Rivian skill).
 
-### You already did MOST of what Aurora wants:
-- AES/RSA/X.509  
-- TPM2.0 key storage  
-- EAP-TLS (mutual authentication)  
-- AAA server integration  
-- Secure command channel prototype  
-- Firewall/protocol hardening  
-- Threat modeling in avionics context  
+### Topics:
+- NCJ37x secure element: key storage, RNG, counters
+- TPM vs HSM vs Secure Element (1-liner each)
+- AES-GCM, SHA-256, ECDSA (only essentials)
+- Certificate chain + provisioning
+- How LiDAR secures firmware + comms with these
 
-**Interview sentence:**  
-“In AeroMACS, I implemented TPM-backed EAP-TLS, device identity, mutual authentication, and secure channel setup — which directly maps to securing LiDAR communications and firmware trust.”
-
----
-
-# ✅ Hour 4: Automotive & Robotics Security Standards
-
-## **ISO/SAE 21434 — Deliver only the essentials**
-- Asset identification  
-- Threat analysis (TARA)  
-- Secure boot & firmware update  
-- Identity & key lifecycle  
-- In-vehicle secure communication  
-- Logging & incident response  
-
-## **UN R155 (1 sentence)**
-“Cybersecurity management: risk evaluation, continuous monitoring, and lifetime protection.”
+### Output:
+- 4 crisp explanations + 2 real examples (Rivian, Honeywell)
 
 ---
 
-# ✅ Hour 5: Secure Element (NCJ37x) + TPM vs HSM
+## ✅ **Hour 3 — Secure Firmware Development (Embedded Linux / RTOS)**
+**Goal:** Show end-to-end firmware security awareness.
 
-You already used NCJ37x at Rivian — **major advantage**.
+### Topics:
+- Bootloader partitioning, flash layout
+- OTA update security + rollback protection
+- Memory safety: overflow, UAF, integer bugs
+- MPU basics
+- Logging integrity (hash chain)
+- Minimal coding refresh:
+  - `open/read/write/ioctl`
+  - Ring buffer
+  - Mutex vs semaphore vs spinlock vs atomic
+  - Interrupt-safe coding patterns
 
-### Key points (keep short):
-- Isolated private key  
-- AES/SHA/HMAC accelerator  
-- RNG  
-- Secure provisioning (factory)  
-- Anti-rollback counters  
-- I2C/SPI driver integration  
-
-### TPM vs HSM vs Secure Element
-- **TPM:** general-purpose root of trust + PCRs  
-- **HSM:** crypto accelerator with key isolation  
-- **Secure Element:** small embedded HSM for automotive  
-
-**Interview line:**  
-“At Rivian, I integrated NCJ37x secure element for key storage and secure channel authentication — nearly identical to hardware security modules for LiDAR firmware.”
+### Output:
+- 6 bullets explaining how you design secure firmware
 
 ---
 
-# ✅ Hour 6: TLS/SSL + OAuth (Embedded Focus)
+## ✅ **Hour 4 — LiDAR & Robotics Security (Threats → Mitigations)**
+**Goal:** Map each attack to a mitigation in 1 short line.
 
-## TLS/SSL for Embedded
-- Use **ECDHE + AES-GCM**
-- Mutual TLS (mTLS) for LiDAR <→ vehicle
-- Certificate chain validation
-- Session resumption
-- Key storage via TPM/SE
+### Threats:
+- Spoofed point-cloud frames  
+- Replay of sensor packets  
+- Blinding/DoS  
+- Firmware injection  
+- Time-sync manipulation  
+- Calibration spoofing  
+- Compromised ECU communication  
+- Physical tampering
 
-### One tight explanation:
-“I’ve implemented TLS client authentication with OpenSSL, used hardware-backed keys (TPM/SE), and optimized cipher suite selection for embedded latency.”
+### Mitigations:
+- mTLS, TPM-backed keys
+- Signed firmware + measured boot
+- Rate limiting + integrity tags
+- Timestamp + nonce verification
+- Secure drivers
+- Tamper bits & secure storage
 
-## OAuth 2.0 (Fast Explanation)
-- Authorization framework  
-- Access + refresh tokens  
-- Scope restrictions  
-- TLS mandatory  
+### Output:
+- 8 one-line (attack → defense) answers
 
 ---
 
-# ✅ Hour 7: Linux Coding & Firmware Refresher (Compact)
+## ✅ **Hour 5 — TLS/mTLS for Embedded + Secure Channel Design**
+**Goal:** Show the ability to design LiDAR <→ vehicle secure channels.
 
-### What to Review Quickly
-- Pointers, struct packing, endian  
-- File I/O: `open()`, `read()`, `write()`, `ioctl()`  
-- pthread basics  
-- Mutex vs semaphore vs spinlock vs atomic  
-- Circular buffer (VERY common)  
-- Minimal network code: TCP + TLS  
-- GDB quick commands
+### Topics:
+- mTLS handshake (embedded version)
+- ECDHE + AES-GCM
+- Certificate storage in TPM/SE
+- Replay protection (nonces, timestamps)
+- Point-cloud frame authentication
+- Secure pairing during initialization
 
-### Circular Buffer Snippet
-```c
-typedef struct {
-    uint8_t buf[256];
-    int head, tail, count;
-    pthread_mutex_t lock;
-} ring_t;
+### Output:
+- 1 mental diagram + 5 speaking lines
 
-void rb_push(ring_t *r, uint8_t v) {
-    pthread_mutex_lock(&r->lock);
-    if (r->count < 256) {
-        r->buf[r->head] = v;
-        r->head = (r->head + 1) % 256;
-        r->count++;
-    }
-    pthread_mutex_unlock(&r->lock);
-}
+---
+
+## ✅ **Hour 6 — ISO/SAE 21434 + UN R155 + Your Past Experience Mapping**
+**Goal:** Show a security mindset without being academic.
+
+### Topics:
+- Asset → Threat → Control (TARA)
+- Secure boot & secure OTA expectations
+- Key lifecycle management
+- Logging + incident response
+- Secure ECU communication
+- Mapping your past work:
+  - Honeywell: AAA/TLS/secure comms
+  - Rivian: NCJ37x secure element
+  - AeroMACS: TPM device identity
+
+### Output:
+- 6 bullets showing compliance alignment
+
+---
+
+## ✅ **Hour 7 — High-Speed Final Review (Critical Q&A Drills)**
+**Goal:** Enter interview fully ready with pre-formed answers.
+
+### Quick drills:
+- TPM PCR explanation (20 sec)
+- Secure boot steps (15 sec)
+- OTA rollback protection (10 sec)
+- Secure element purpose (1 line)
+- LiDAR threat model (5 lines)
+- Mutex vs semaphore vs spinlock (5 sec each)
+- Your top 3 stories:
+  1. Honeywell secure comms + AAA + TLS  
+  2. Rivian NCJ37x secure element integration  
+  3. Video streaming crypto (AES-256 + TLS)
+
+### Output:
+- Fully rehearsed answers for all expected questions
+
+---
+
+# ✅ **Summary**
+This 7-hour plan covers:
+- TPM + chain-of-trust  
+- Secure boot & rollback  
+- Secure elements / crypto  
+- Secure firmware development  
+- LiDAR-specific threat model  
+- Embedded TLS/mTLS  
+- ISO21434 mapping  
+- Your direct, relevant experience
+
+Perfectly tuned for the **Aurora LiDAR Security Firmware Engineer** interview.
+
